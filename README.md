@@ -1,5 +1,7 @@
 ## Generador de Diccionarios
 
+![2024-10-31_08-10](https://github.com/user-attachments/assets/ad1cce47-ab8f-4138-8fd1-227eb3c5c570)
+
 Este generador de diccionarios en HTML y JavaScript permite crear diccionarios de contraseñas personalizadas basadas en datos ingresados por el usuario. Facilita la creación de combinaciones a partir de nombres, apellidos, DNI, fechas de nacimiento, direcciones y otras palabras clave.
 
 ---
