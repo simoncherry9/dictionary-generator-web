@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú Principal</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: "Courier New", Courier, monospace;
+        }
+
+        body {
+            background-color: #0a0a0a;
+            color: #00ff00;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-size: 16px;
+            flex-direction: column;
+        }
+
+        .container {
+            max-width: 500px;
+            padding: 30px;  
+            background-color: #111;
+            border: 2px solid #00ff00;
+            border-radius: 10px;  
+            box-shadow: 0 0 25px #00ff00; 
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        label {
+            color: #00ff00;
+            margin-top: 10px;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        input[type="text"] {
+            color: #00ff00;
+            background: #222;
+            border: 1px solid #00ff00;
+            padding: 10px;
+            width: 100%;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        button {
+            color: #00ff00;
+            background: #222;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #444;
+        }
+
+        h1 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        #dictionaryGenerator {
+            display: none; 
+            margin-top: 20px;
+            padding-top: 20px; 
+        }
+
+        .download-link {
+            display: inline-block;
+            color: #00ff00;
+            background-color: #222;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .download-link:hover {
+            background-color: #444;
+        }
+
+        #loadingMessage {
+            color: #ffff00;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Menú Principal</h1>
+        <div id="mainMenu">
+            <button onclick="showDictionaryGenerator()">Generar Diccionario</button>
+            <button onclick="visitRepository()">Visitar Repositorio</button>
+        </div>
+
+        <div id="dictionaryGenerator">
+            <h1>Generador de Diccionarios</h1>
+            <form id="formulario">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" required>
+
+                <label for="apellido">Apellido:</label>
+                <input type="text" id="apellido" required>
+
+                <label for="dni">DNI:</label>
+                <input type="text" id="dni" required>
+
+                <label for="fecha_nacimiento">Fecha de nacimiento (YYYYMMDD):</label>
+                <input type="text" id="fecha_nacimiento" required>
+
+                <label for="direccion">Dirección:</label>
+                <input type="text" id="direccion" required>
+
+                <label for="otra_palabra">Palabra clave adicional:</label>
+                <input type="text" id="otra_palabra">
+
+                <label for="nombre_mascota">Nombre de mascota:</label>
+                <input type="text" id="nombre_mascota">
+
+                <label for="color_favorito">Color favorito:</label>
+                <input type="text" id="color_favorito">
+
+                <label for="lugar_nacimiento">Lugar de nacimiento:</label>
+                <input type="text" id="lugar_nacimiento">
+
+                <label>
+                    <input type="checkbox" id="incluirNumeros">
+                    Incluir Números
+                </label>
+
+                <label>
+                    <input type="checkbox" id="incluirEspeciales">
+                    Incluir Caracteres Especiales
+                </label>
+
+                <button type="button" style="margin-top: 20px;" id="generateButton" onclick="generarDiccionario()">Generar Diccionario</button>
+            </form>
+            <p id="loadingMessage" style="margin-top: 20px;">Generando diccionario, por favor espera...</p>
+            <a id="downloadLink" style="display:none; margin-top: 20px;" class="download-link">Descargar Diccionario</a>
+            <button onclick="backToMenu()" style="margin-top: 20px;">Volver al Menú Principal</button>
+        </div>
+    </div>
+
+    <script>
+        function showDictionaryGenerator() {
+            document.getElementById("mainMenu").style.display = "none";
+            document.getElementById("dictionaryGenerator").style.display = "block";
+        }
+
+        function visitRepository() {
+            window.open("https://github.com/", "_blank");
+        }
+
+        function backToMenu() {
+            document.getElementById("dictionaryGenerator").style.display = "none";
+            document.getElementById("mainMenu").style.display = "block";
+        }
+
+        function generarDiccionario() {
+            const generateButton = document.getElementById("generateButton");
+            const loadingMessage = document.getElementById("loadingMessage");
+            const downloadLink = document.getElementById("downloadLink");
+
+            generateButton.style.display = "none";
+            loadingMessage.style.display = "block";
+            downloadLink.style.display = "none";
+
+            setTimeout(() => {
+                const datos = [
+                    document.getElementById('nombre').value,
+                    document.getElementById('apellido').value,
+                    document.getElementById('dni').value,
+                    document.getElementById('fecha_nacimiento').value,
+                    document.getElementById('direccion').value,
+                    document.getElementById('otra_palabra').value,
+                    document.getElementById('nombre_mascota').value,
+                    document.getElementById('color_favorito').value,
+                    document.getElementById('lugar_nacimiento').value
+                ].filter(palabra => palabra);
+
+                const incluirNumeros = document.getElementById('incluirNumeros').checked;
+                const incluirEspeciales = document.getElementById('incluirEspeciales').checked;
+
+                const variaciones = new Set();
+                const numeros = ["123", "2024", "2023", "000"];
+                const caracteresEspeciales = ["!", "@", "#", "$", "%", "&", "*", "?"];
+
+                function generarVariaciones(palabras) {
+                    const combinaciones = [];
+                    palabras.forEach(palabra => {
+                        combinaciones.push(palabra);
+                        combinaciones.push(palabra.toLowerCase());
+                        combinaciones.push(palabra.toUpperCase());
+                        combinaciones.push(palabra.charAt(0).toUpperCase() + palabra.slice(1));
+                    });
+                    for (let i = 0; i < palabras.length; i++) {
+                        for (let j = i + 1; j < palabras.length; j++) {
+                            combinaciones.push(palabras[i] + palabras[j]);
+                            combinaciones.push(palabras[j] + palabras[i]);
+                        }
+                    }
+                    return combinaciones;
+                }
+
+                const combinacionesBasicas = generarVariaciones(datos);
+                
+                combinacionesBasicas.forEach(palabra => {
+                    variaciones.add(palabra);
+                    if (incluirNumeros) {
+                        numeros.forEach(num => {
+                            variaciones.add(palabra + num);
+                            variaciones.add(num + palabra);
+                        });
+                    }
+                    if (incluirEspeciales) {
+                        caracteresEspeciales.forEach(caracter => {
+                            variaciones.add(palabra + caracter);
+                            variaciones.add(caracter + palabra);
+                        });
+                    }
+                });
+
+                const variacionesArray = Array.from(variaciones);
+                const contenido = variacionesArray.join('\n');
+
+                const blob = new Blob([contenido], { type: 'text/plain' });
+                const url = URL.createObjectURL(blob);
+                downloadLink.href = url;
+                downloadLink.download = 'diccionario.txt';
+                downloadLink.style.display = 'block';
+                downloadLink.textContent = 'Descargar Diccionario';
+
+                generateButton.style.display = "block";
+                loadingMessage.style.display = "none";
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
