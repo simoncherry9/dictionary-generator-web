@@ -17,7 +17,8 @@ Este generador de diccionarios en HTML y JavaScript permite crear diccionarios d
 
 ## ⚙️ Requisitos
 
-Navegador web moderno (Chrome, Firefox, etc.)
+- Navegador web moderno (Chrome, Firefox, etc.)
+- Si deseas, puedes utilizar la herramienta para terminal: https://github.com/simoncherry9/dictionary-generator.git
 
 ---
 
