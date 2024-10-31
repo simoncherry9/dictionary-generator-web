@@ -21,7 +21,7 @@ Navegador web moderno (Chrome, Firefox, etc.)
 
 ## 🛠️ Cómo Usar
 
-Ingresa a la web: 
+Ingresa a la web: https://simoncherry9.github.io/dictionary-generator-web/
 
 ---
 
