@@ -1,4 +1,4 @@
-## Generador de Diccionarios
+## Generador de Diccionarios - Web
 
 ![2024-10-31_08-10](https://github.com/user-attachments/assets/ad1cce47-ab8f-4138-8fd1-227eb3c5c570)
 
