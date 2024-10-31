@@ -8,10 +8,10 @@ Este generador de diccionarios en HTML y JavaScript permite crear diccionarios d
 
 ## 📋 Características
 
-- **Entrada Personalizada: Permite al usuario ingresar diferentes datos, y funciona incluso si se omiten algunos campos.
-- **Generación de Variaciones: Crea combinaciones de contraseñas con mayúsculas, minúsculas, números y caracteres especiales.
-- **Interfaz Amigable: Ofrece animaciones de carga y mensajes de éxito para una mejor experiencia del usuario.
-- **Salida en Archivo: Guarda todas las contraseñas generadas en un archivo de texto, fácil de acceder y utilizar.
+- Entrada Personalizada: Permite al usuario ingresar diferentes datos, y funciona incluso si se omiten algunos campos.
+- Generación de Variaciones: Crea combinaciones de contraseñas con mayúsculas, minúsculas, números y caracteres especiales.
+- Interfaz Amigable: Ofrece animaciones de carga y mensajes de éxito para una mejor experiencia del usuario.
+- Salida en Archivo: Guarda todas las contraseñas generadas en un archivo de texto, fácil de acceder y utilizar.
 
 ---
 
